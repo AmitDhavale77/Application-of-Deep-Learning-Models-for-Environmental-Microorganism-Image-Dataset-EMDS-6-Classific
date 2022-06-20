@@ -202,8 +202,8 @@ y_test1 = to_categorical1(y_test, num_classes=21)
 print("loading MobileNetV2 with imagenet weights")
 ## Loading VGG16 model
 #base_model = VGG16(weights="imagenet", include_top=False, input_shape=(224,224,3))
-#base_model = MobileNetV2(weights="imagenet", include_top=False, input_shape=(224,224,3))
-base_model = Xception(input_shape=(224,224,3), include_top=False, weights='imagenet', pooling='avg') # Average pooling reduces output dimensions
+base_model = MobileNetV2(weights="imagenet", include_top=False, input_shape=(224,224,3))
+#base_model = Xception(input_shape=(224,224,3), include_top=False, weights='imagenet', pooling='avg') # Average pooling reduces output dimensions
 
 base_model.trainable = False ## Not trainable weights
 base_model.summary()
@@ -357,8 +357,8 @@ es = EarlyStopping(monitor='val_accuracy', mode='max', patience=3,  restore_best
 #mc = ModelCheckpoint('D:/Learn_ML/EMDS-5-main/best_model_squeezenet.hdf5', monitor='val_loss', mode='min', verbose=1,save_best_only=True)
 
 #mc = ModelCheckpoint('D:/Learn_ML/EMDS-5-main/best_model_vgg16.hdf5', monitor='val_loss', mode='min', verbose=1,save_best_only=True)
-#mc = ModelCheckpoint('D:/Learn_ML/EMDS-5-main/best_model_mobilenet.hdf5', monitor='val_loss', mode='min', verbose=1,save_best_only=True)
-mc = ModelCheckpoint('D:/Learn_ML/EMDS-5-main/best_model_Xception.hdf5', monitor='val_loss', mode='min', verbose=1,save_best_only=True)
+mc = ModelCheckpoint('D:/Learn_ML/EMDS-5-main/best_model_mobilenet.hdf5', monitor='val_loss', mode='min', verbose=1,save_best_only=True)
+#mc = ModelCheckpoint('D:/Learn_ML/EMDS-5-main/best_model_Xception.hdf5', monitor='val_loss', mode='min', verbose=1,save_best_only=True)
 
 #print("training/fine tuning mobilenet last layers for microbes  dataset")
 print("training/fine tuning Xception last layers for microbes  dataset")
@@ -366,10 +366,10 @@ print("training/fine tuning Xception last layers for microbes  dataset")
 hist=model.fit(x_train, y_train1, epochs=15, validation_split=0.2, batch_size=32, callbacks=[es, mc])
 
 from keras.models import load_model
-#saved_model = load_model('D:/Learn_ML/EMDS-5-main/best_model_mobilenet.hdf5')
+saved_model = load_model('D:/Learn_ML/EMDS-5-main/best_model_mobilenet.hdf5')
 #saved_model = load_model('D:/Learn_ML/EMDS-5-main/best_model_vgg16.hdf5')
 #saved_model = load_model('D:/Learn_ML/EMDS-5-main/best_model_squeezenet.hdf5')
-saved_model = load_model('D:/Learn_ML/EMDS-5-main/best_model_Xception.hdf5')
+#saved_model = load_model('D:/Learn_ML/EMDS-5-main/best_model_Xception.hdf5')
 
 
 plt.plot(hist.history["accuracy"])
@@ -407,5 +407,95 @@ plt.legend()
 plt.show()
 
 y_pred=saved_model.predict(x_test)
+y_pred1=np.round(y_pred)
 from sklearn.metrics import confusion_matrix
-cm=confusion_matrix(y_test1, y_pred)
+#cm=confusion_matrix(y_test1, y_pred1)
+
+temp=[]
+for i in y_pred1:
+    temp.append(i.argmax(axis=0))# to extract position where output is 1
+temp=list(temp)
+
+temp1=[]
+for i in y_test1:
+    temp1.append(i.argmax(axis=0))               
+xx= np.arange(0,21)
+
+cm = confusion_matrix(temp1, temp, labels=xx)
+recall = np.diag(cm) / np.sum(cm, axis = 1)
+precision = np.diag(cm) / np.sum(cm, axis = 0)
+recall1=np.mean(recall)
+precision1=np.mean(precision)
+f1=(2*recall1*precision1)/(recall1+precision1)
+# accuracy: (tp + tn) / (p + n)
+accuracy = accuracy_score(temp, temp1)
+print('Accuracy: %f' % accuracy)
+# precision tp / (tp + fp)
+#precision = precision_score(temp, temp1, pos_label='positive',average='micro')
+print('Precision: %f'% np.mean(precision))
+# recall: tp / (tp + fn)
+#recall = recall_score(temp, temp1,pos_label='positive',average='micro')
+print('Recall: %f' % np.mean(recall))
+# f1: 2 tp / (2 tp + fp + fn)
+#f1 = f1_score(temp, temp1)
+print('F1 score: %f' % f1)
+
+class_report = classification_report(temp1, temp, labels=np.arange(0,21))
+
+from sklearn.preprocessing import LabelBinarizer
+from sklearn.metrics import roc_curve, auc, roc_auc_score
+
+
+target= xx
+
+# set plot figure size
+fig, c_ax = plt.subplots(1,1, figsize = (12, 8))
+
+# function for scoring roc auc score for multi-class
+def multiclass_roc_auc_score(y_test, y_pred, average="macro"):
+    lb = LabelBinarizer()
+    lb.fit(y_test)
+    y_test = lb.transform(y_test)
+    y_pred = lb.transform(y_pred)
+
+    for (idx, c_label) in enumerate(target):
+        fpr, tpr, thresholds = roc_curve(y_test[:,idx].astype(int), y_pred[:,idx])
+        c_ax.plot(fpr, tpr, label = '%s (AUC:%0.2f)'  % (c_label, auc(fpr, tpr)))
+    c_ax.plot(fpr, fpr, 'b-', label = 'Random Guessing')
+    return roc_auc_score(y_test, y_pred, average=average)
+
+
+print('ROC AUC score:', multiclass_roc_auc_score(temp1,temp))
+
+c_ax.legend()
+c_ax.set_xlabel('False Positive Rate')
+c_ax.set_ylabel('True Positive Rate')
+plt.show()
+
+fig, px = plt.subplots(figsize=(7.5, 7.5))
+px.matshow(cm, cmap=plt.cm.YlOrRd, alpha=0.5)
+for m in range(cm.shape[0]):
+    for n in range(cm.shape[1]):
+        px.text(x=m,y=n,s=cm[m, n], va='center', ha='center', size='xx-large')
+
+# Sets the labels
+plt.xlabel('Predictions', fontsize=16)
+plt.ylabel('Actuals', fontsize=16)
+plt.title('Confusion Matrix', fontsize=15)
+plt.show()
+
+# imports
+import seaborn as sebrn
+# Using Seaborn heatmap to create the plot
+fx = sebrn.heatmap(cm, annot=True, cmap='turbo')
+
+# labels the title and x, y axis of plot
+fx.set_title('Plotting Confusion Matrix using Seaborn\n\n');
+fx.set_xlabel('Predicted Values')
+fx.set_ylabel('Actual Values ');
+
+# # labels the boxes
+# fx.xaxis.set_ticklabels(['False','True'])
+# fx.yaxis.set_ticklabels(['False','True'])
+
+plt.show()
