@@ -1,8 +1,0 @@
-gitdb==4.0.9
-GitPython==3.1.27
-h5py==2.10.0
-keras-squeezenet==0.4
-numpy==1.18.5
-opencv-python==4.5.5.64
-scipy==1.4.1
-
