@@ -38,7 +38,7 @@ from matplotlib import pyplot as plt # pip install matplotlib
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'#Used to avoid printing of Warnings
 st.title("EMDS6 model")
 # get the path/directory
-folder_dir = "D:\\Learn_ML\\EMDS-6\\EMDS5-Original\\new"
+#folder_dir = "D:\\Learn_ML\\EMDS-6\\EMDS5-Original\\new"
 #folder_dir1="D:\\Learn_ML\\EMDS-6\\EMDS5-Original\\01"
 imagelist = []
 filelist=[]
@@ -54,7 +54,7 @@ st.title('EMDS Image Classifier using Deep Learning')
 st.text('Upload the Image from the listed category.\n[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]')
 
 from keras.models import load_model
-saved_model = load_model('D:/Learn_ML/EMDS-5-main/best_model_mobilenetwithaugalphadp.hdf5')
+saved_model = load_model('best_model_mobilenetv2_final.hdf5')
 
 # filename="EMDS5-g02-01.png"
 # imge = Image.open(os.path.join(folder_dir,filename))
