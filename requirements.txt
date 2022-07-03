@@ -1,7 +1,6 @@
 gitdb==4.0.9
 GitPython==3.1.27
 h5py==2.10.0
-html5lib @ file:///Users/ktietz/demo/mc3/conda-bld/html5lib_1629144453894/work
 imageio @ file:///tmp/build/80754af9/imageio_1617700267927/work
 imagesize @ file:///tmp/build/80754af9/imagesize_1637939814114/work
 iniconfig @ file:///home/linux1/recipes/ci/iniconfig_1610983019677/work
