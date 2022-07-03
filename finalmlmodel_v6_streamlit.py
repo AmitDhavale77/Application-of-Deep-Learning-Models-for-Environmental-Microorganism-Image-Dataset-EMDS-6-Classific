@@ -74,22 +74,7 @@ if uploaded_file is not None:
   imge = Image.open(uploaded_file)
   st.image(imge,caption='Uploaded Image')
 
-  if st.button('PREDICT'):
-    Categories = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21']    
-    st.write('Result.....')
-    flat_data=[]
-    imge = np.array(imge)
-    img1=cv2.resize(imge, (224, 224),interpolation = cv2.INTER_NEAREST)#The INTER_NEAREST method uses the nearest neighbor concept for interpolation. This is one of the simplest methods, using only one neighboring pixel from the image for interpolation.
-    norm_image = cv2.normalize(img1, None, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
-    y = np.expand_dims(norm_image, axis=0)
-    y_out = saved_model.predict(y)
-    y_out=np.round(y_out)
-    Categories = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21']
-    y_out1 = Categories[y_out.argmax()]
-    st.title(f' PREDICTED OUTPUT: {y_out1}')
-    q = saved_model.predict_proba(y)
-    for index, item in enumerate(Categories):
-      st.write(f'{item} : {q[0][index]*100}%')
+
 
 st.text("")
 st.text('Made by Amit Dhavale')
