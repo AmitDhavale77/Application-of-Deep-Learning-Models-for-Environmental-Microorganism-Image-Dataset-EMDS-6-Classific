@@ -1,10 +1,3 @@
-anaconda-client @ file:///C:/ci/anaconda-client_1635342752200/work
-anaconda-project @ file:///tmp/build/80754af9/anaconda-project_1637161053845/work
-conda-content-trust @ file:///tmp/build/80754af9/conda-content-trust_1617045594566/work
-conda-pack @ file:///tmp/build/80754af9/conda-pack_1611163042455/work
-conda-package-handling @ file:///C:/ci/conda-package-handling_1649105961774/work
-conda-repo-cli @ file:///tmp/build/80754af9/conda-repo-cli_1620168426516/work
-conda-verify==3.4.2
 gitdb==4.0.9
 GitPython==3.1.27
 h5py==2.10.0
