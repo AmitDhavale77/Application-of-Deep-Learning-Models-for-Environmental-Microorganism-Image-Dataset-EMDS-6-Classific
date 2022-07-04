@@ -65,7 +65,7 @@ mpmath==1.2.1
 multipledispatch==0.6.0
 munkres==1.1.4
 mysql-connector-python==8.0.26
-navigator-updater==0.2.1
+
 
 numba==0.51.2
 
