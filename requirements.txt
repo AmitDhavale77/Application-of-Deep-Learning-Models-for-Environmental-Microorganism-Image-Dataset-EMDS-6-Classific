@@ -1,49 +1,27 @@
-absl-py @ file:///opt/conda/conda-bld/absl-py_1639803114343/work
-aiohttp @ file:///C:/ci/aiohttp_1646806545879/work
-aiosignal @ file:///tmp/build/80754af9/aiosignal_1637843061372/work
-alabaster @ file:///home/ktietz/src/ci/alabaster_1611921544520/work
+
 altair==4.2.0
-anaconda-client @ file:///C:/ci/anaconda-client_1635342752200/work
-anaconda-project @ file:///tmp/build/80754af9/anaconda-project_1637161053845/work
-anyio @ file:///C:/ci/anyio_1644463701441/work/dist
+
 argh==0.26.2
-argon2-cffi @ file:///opt/conda/conda-bld/argon2-cffi_1645000214183/work
-argon2-cffi-bindings @ file:///C:/ci/argon2-cffi-bindings_1644569878360/work
-asn1crypto @ file:///C:/ci/asn1crypto_1652344143274/work
+
 astor==0.8.1
-astroid @ file:///C:/ci/astroid_1639044403229/work
-astropy @ file:///C:/ci/astropy_1650634250657/work
-asttokens @ file:///opt/conda/conda-bld/asttokens_1646925590279/work
+
 astunparse==1.6.3
-async-generator @ file:///home/ktietz/src/ci/async_generator_1611927993394/work
-async-timeout @ file:///tmp/build/80754af9/async-timeout_1637851218186/work
+
 atomicwrites==1.4.0
-attrs @ file:///opt/conda/conda-bld/attrs_1642510447205/work
-autopep8 @ file:///tmp/build/80754af9/autopep8_1596578164842/work
-Babel @ file:///tmp/build/80754af9/babel_1620871417480/work
-backcall @ file:///home/ktietz/src/ci/backcall_1611930011877/work
-backports.functools-lru-cache @ file:///tmp/build/80754af9/backports.functools_lru_cache_1618170165463/work
-backports.shutil-get-terminal-size @ file:///tmp/build/80754af9/backports.shutil_get_terminal_size_1608222128777/work
-backports.tempfile @ file:///home/linux1/recipes/ci/backports.tempfile_1610991236607/work
+
 backports.weakref==1.0.post1
 backports.zoneinfo==0.2.1
-bcrypt @ file:///C:/ci/bcrypt_1597936263757/work
-beautifulsoup4 @ file:///C:/ci/beautifulsoup4_1650274792587/work
-bitarray @ file:///C:/ci/bitarray_1652172552840/work
+
 bkcharts==0.2
-bleach @ file:///opt/conda/conda-bld/bleach_1641577558959/work
+
 blinker==1.4
-bokeh @ file:///C:/ci/bokeh_1652967055660/work
+
 boto==2.49.0
-Bottleneck @ file:///C:/ci/bottleneck_1648029103672/work
+
 brotlipy==0.7.0
-cachetools @ file:///tmp/build/80754af9/cachetools_1619597386817/work
+
 certifi==2022.5.18.1
-cffi @ file:///C:/ci_310/cffi_1642682485096/work
-chardet @ file:///C:/ci/chardet_1607690654534/work
-charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
-click @ file:///C:/ci/click_1646056799533/work
-cloudpickle @ file:///tmp/build/80754af9/cloudpickle_1632508026186/work
+
 clyent==1.2.2
 colorama @ file:///tmp/build/80754af9/colorama_1607707115595/work
 commonmark==0.9.1
