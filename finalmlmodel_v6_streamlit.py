@@ -2,39 +2,39 @@
 #To explore VGG16
 import os#all below imported packeages are important
 import cv2
-from tensorflow.keras.applications.vgg16 import VGG16
-from tensorflow.keras.applications.vgg16 import preprocess_input
-from tensorflow.keras.applications import MobileNetV2
-from tensorflow.keras.applications import Xception
-from tensorflow.keras.applications import ResNet50
-from tensorflow.keras.applications import DenseNet201
-from tensorflow.keras.applications import InceptionV3
-from tensorflow.keras.applications import InceptionResNetV2
-from tensorflow.keras.callbacks import EarlyStopping
+#from tensorflow.keras.applications.vgg16 import VGG16
+#from tensorflow.keras.applications.vgg16 import preprocess_input
+#from tensorflow.keras.applications import MobileNetV2
+#from tensorflow.keras.applications import Xception
+#from tensorflow.keras.applications import ResNet50
+#from tensorflow.keras.applications import DenseNet201
+#from tensorflow.keras.applications import InceptionV3
+#from tensorflow.keras.applications import InceptionResNetV2
+#from tensorflow.keras.callbacks import EarlyStopping
 #%matplotlib inline
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from os import listdir
 from PIL import Image 
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler
-from skimage.feature import hog
+#from sklearn.model_selection import train_test_split
+#from sklearn.preprocessing import MinMaxScaler
+#from skimage.feature import hog
 import json
 from skimage import color
-from sklearn import svm
-from sklearn.metrics import classification_report,accuracy_score, precision_score,recall_score, f1_score 
-import keras,os
-from keras.models import Sequential
-from keras.layers import Dense, Conv2D, MaxPool2D , Flatten
-from keras.preprocessing.image import ImageDataGenerator
-from keras.optimizers import Adam
-from keras.callbacks import ModelCheckpoint, EarlyStopping
-from tensorflow.keras.utils import to_categorical
-import os
-from sklearn.model_selection import KFold
+#from sklearn import svm
+#from sklearn.metrics import classification_report,accuracy_score, precision_score,recall_score, f1_score 
+#import keras,os
+#from keras.models import Sequential
+#from keras.layers import Dense, Conv2D, MaxPool2D , Flatten
+#from keras.preprocessing.image import ImageDataGenerator
+#from keras.optimizers import Adam
+#from keras.callbacks import ModelCheckpoint, EarlyStopping
+#from tensorflow.keras.utils import to_categorical
+#import os
+#from sklearn.model_selection import KFold
 import streamlit as st
-import pandas as pd # pip install pandas
-from matplotlib import pyplot as plt # pip install matplotlib
+#import pandas as pd # pip install pandas
+#from matplotlib import pyplot as plt # pip install matplotlib
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'#Used to avoid printing of Warnings
 st.title("EMDS6 model")
 # get the path/directory
