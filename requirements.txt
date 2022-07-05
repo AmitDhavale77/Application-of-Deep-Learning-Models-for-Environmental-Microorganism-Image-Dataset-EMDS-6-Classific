@@ -1,4 +1,4 @@
-numpy==1.18.1
+numpy==1.9.2
 streamlit==0.68.1
 base58==2.0.0
 keras-squeezenet==0.4
