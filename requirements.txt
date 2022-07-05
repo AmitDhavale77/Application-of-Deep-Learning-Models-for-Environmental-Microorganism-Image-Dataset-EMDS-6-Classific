@@ -1,5 +1,5 @@
-streamlit==0.68.1
 numpy==1.18.1
+streamlit==0.68.1
 base58==2.0.0
 keras-squeezenet==0.4
 opencv-python==4.5.5.64
